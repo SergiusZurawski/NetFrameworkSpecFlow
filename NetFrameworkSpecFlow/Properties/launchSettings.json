@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "POCTestFrameworkNUnit": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "testenv": "dte07",
+        "webbrowser": "Chrome",
+        "environmentConfig": "dte07.yaml"
+      }
+    }
+  }
+}

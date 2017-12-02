@@ -1,0 +1,12 @@
+﻿hostName: dtot07
+domainName: ".navimedix.com"
+#userCredentials: 
+#    "test1": "testvalue"
+#    "test2": "testvalues"
+userCredentials:
+    defaultUser:
+        userName: kyber_authTest
+        password: 8cambridge
+    user2:
+        userName: kyber_auth
+        password: 8cambridge

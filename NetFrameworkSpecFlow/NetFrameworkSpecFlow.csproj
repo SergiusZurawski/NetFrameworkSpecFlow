@@ -47,12 +47,38 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="TechTalk.SpecFlow, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>packages\SpecFlow.2.2.1\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Selenium.WebDriver.3.7.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Selenium.Support.3.7.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\YamlDotNet.4.2.2\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Steps\AuthorizationSubmitionSteps.cs" />
+    <Compile Include="src\BrowserFactory.cs" />
+    <Compile Include="src\Component\AdditionalProviderCustomSearchPopUp.cs" />
+    <Compile Include="src\Component\IComponent.cs" />
+    <Compile Include="src\Component\NewAuthorizationPreScreeningPopUp.cs" />
+    <Compile Include="src\Component\SeriviceLine.cs" />
+    <Compile Include="src\Component\ServcingCustomSearchPopUp.cs" />
+    <Compile Include="src\DTO\Config\EnvironmentConfig.cs" />
+    <Compile Include="src\DTO\Config\IBrowserConfig.cs" />
+    <Compile Include="src\Page\CreateAuthorization.cs" />
+    <Compile Include="src\Page\IPage.cs" />
+    <Compile Include="src\Page\PatientSearch.cs" />
+    <Compile Include="src\Page\SearchForAuthorization.cs" />
+    <Compile Include="src\Page\SignIn.cs" />
+    <Compile Include="src\Constants.cs" />
+    <Compile Include="src\TestContextCustom.cs" />
+    <Compile Include="src\Utilities\ElementHelper.cs" />
+    <Compile Include="FeatureSteps\AuthorizationSubmitionSteps.cs" />
     <Compile Include="Features\AuthorizationSubmition.feature.cs">
       <DependentUpon>AuthorizationSubmition.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -64,10 +90,15 @@
       <DependentUpon>Authorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\AuthorizationSteps.cs" />
+    <Compile Include="FeatureSteps\AuthorizationSteps.cs" />
+    <Compile Include="src\Helpers\SignInHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="configs\cte03.yaml" />
+    <None Include="configs\dte07.yaml" />
+    <None Include="configs\dvvmcg.yaml" />
+    <None Include="configs\dvvmszh.yaml" />
     <None Include="Features\AuthorizationSubmition.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AuthorizationSubmition.feature.cs</LastGenOutput>
@@ -77,8 +108,13 @@
       <LastGenOutput>Authorization.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="README.md" />
+    <None Include="Properties\launchSettings.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="testData\" />
+    <Folder Include="TestResults\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -88,6 +124,17 @@
     <Error Condition="!Exists('packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.props'))" />
     <Error Condition="!Exists('packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.targets'))" />
     <Error Condition="!Exists('packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets'))" />
   </Target>
   <Import Project="packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.targets" Condition="Exists('packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.targets')" />
+  <Import Project="packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" />
+  <ItemGroup>
+    <_CopyItemConfig Include="configs\*.*" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <!-- <message Text="!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!was called"/> -->
+    <!-- <MakeDir Directories="$(OutputPath)\IAMDIRRECTORY"/>  -->
+    <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(OutputPath)\Properties" />
+    <Copy SourceFiles="@(_CopyItemConfig)" DestinationFolder="$(OutputPath)\configs" />
+  </Target>
 </Project>

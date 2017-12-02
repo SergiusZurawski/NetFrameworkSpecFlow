@@ -1,11 +1,8 @@
 ﻿Feature: AuthorizationSubmition
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
-
+	
 @mytag
-Scenario: Second Test
-	Given I open something
-	And It waits a while
-	When It stop waiting 
-	Then I can see the miracle
+Scenario: Successful Authorization
+	Given As a default user with Authorization Permitions enabled I login and go to search Authorization page
+	And I populate patient search page with default values
+	When Create authorization page is filled for service type 'Chemoterapy' with values from the 'ChemoterapyDefault.yaml'
+	Then I can see Authorization details page

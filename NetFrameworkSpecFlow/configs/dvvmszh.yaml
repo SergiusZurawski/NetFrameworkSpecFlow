@@ -1,0 +1,9 @@
+﻿hostName: dvszhuravskvm01
+domainName: ".navimedix.com"
+userCredentials:
+    defaultUser:
+        userName: authuserserg
+        password: 8cambridge
+    user2:
+        userName: authuseronyx1
+        password: 8cambridge

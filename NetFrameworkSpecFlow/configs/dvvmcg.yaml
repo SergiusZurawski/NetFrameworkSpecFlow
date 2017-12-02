@@ -1,0 +1,9 @@
+﻿hostName: dvcgallaghervm
+domainName: ".navimedix.com"
+userCredentials:
+    defaultUser:
+        userName: auth_cathy
+        password: 8navimedix
+    user2:
+        userName: auth_user
+        password: 8cambridge

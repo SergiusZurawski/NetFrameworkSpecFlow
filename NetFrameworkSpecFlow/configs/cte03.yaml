@@ -1,0 +1,12 @@
+﻿hostName: ctapot03
+domainName: ".navimedix.com"
+#userCredentials: 
+#    "test1": "testvalue"
+#    "test2": "testvalues"
+userCredentials:
+    defaultUser:
+        userName: authuseronyx
+        password: 8cambridge
+    user2:
+        userName: authuseronyx1
+        password: 8cambridge
