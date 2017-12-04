@@ -47,20 +47,20 @@ namespace NetFrameworkSpecFlow
             Console.WriteLine("ThenICanSeeAuthorizationDetailsPage");
         }
 
-        [AfterTestRun]
-        public static void AfterTestRun()
-        {
-            int i = 1 + 2;
-            Console.WriteLine(i);
-            //factory.CloseAllDrivers();
-        }
+        //[AfterTestRun]
+        //public static void AfterTestRun()
+        //{
+        //    int i = 1 + 2;
+        //    Console.WriteLine(i);
+        //    //factory.CloseAllDrivers();
+        //    TestContextCustom.Current.BrowserFactory.CloseAllDrivers();
+        //}
 
-        [OneTimeTearDown]
-        public void TeadownOne()
-        {
-            int i = 1 + 2;
-            Console.WriteLine(i);
-        }
+        //[OneTimeTearDown]
+        //public void TeadownOne()
+        //{
+        //    TestContextCustom.Current.BrowserFactory.CloseAllDrivers();
+        //}
 
     }
 }

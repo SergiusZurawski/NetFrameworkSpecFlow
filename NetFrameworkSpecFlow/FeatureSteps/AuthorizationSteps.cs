@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using DotNetCore;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System;
@@ -13,6 +14,10 @@ namespace NetFrameworkSpecFlow.Steps
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
         {
+            var userName = TestContextCustom.Current.EnvConfig.UserCredentials[Constants.USER_CRDENTIALS_DEFAULT].UserName;
+            var password = TestContextCustom.Current.EnvConfig.UserCredentials[Constants.USER_CRDENTIALS_DEFAULT].Password;
+            SignInHelper sign = new SignInHelper();
+            SignInHelper.SignInAndOpenEAndB(userName, password);
             //DesiredCapabilities caps = new DesiredCapabilities();
             //caps.SetCapability(CapabilityType.BrowserName, "chrome");
             //caps.SetCapability(CapabilityType.Version, "61");
@@ -44,5 +49,11 @@ namespace NetFrameworkSpecFlow.Steps
         {
             Console.WriteLine("ThenTheResultShouldBeOnTheScreen");
         }
+
+        //[OneTimeTearDown]
+        //public void TeadownOne()
+        //{
+        //    TestContextCustom.Current.BrowserFactory.CloseAllDrivers();
+        //}
     }
 }
